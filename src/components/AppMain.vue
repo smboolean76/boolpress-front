@@ -1,14 +1,12 @@
 <script>
-import ListPosts from "./ListPosts.vue";
 export default {
   name: "AppMain",
-  components: { ListPosts },
 };
 </script>
 
 <template>
   <main>
-    <ListPosts />
+    <router-view></router-view>
   </main>
 </template>
 
