@@ -14,6 +14,7 @@
 
 <script>
 import axios from "axios";
+import { store } from "../store";
 import CardPost from "./CardPost.vue";
 
 export default {
@@ -23,11 +24,12 @@ export default {
   },
   data() {
     return {
+      store,
       posts: [],
     };
   },
   created() {
-    axios.get("http://localhost:8000/api/posts").then((response) => {
+    axios.get(`${this.store.api_url}/posts`).then((response) => {
       this.posts = response.data;
     });
   },
