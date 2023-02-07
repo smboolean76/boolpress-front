@@ -3,10 +3,13 @@
     <h2>Lista dei Posts</h2>
     <div class="container">
       <div class="row gy-3">
-        <div class="col-md-4" v-for="post in posts">
+        <div class="col-md-4" v-for="post in getPosts">
           <CardPost :data="post" />
         </div>
       </div>
+      <button @click="totPosts += 3" v-if="totPosts < posts.length">
+        Mostra altri
+      </button>
     </div>
     <ul></ul>
   </section>
@@ -26,7 +29,13 @@ export default {
     return {
       store,
       posts: [],
+      totPosts: 3,
     };
+  },
+  computed: {
+    getPosts() {
+      return this.posts.filter((elm, index) => index < this.totPosts);
+    },
   },
   created() {
     axios.get(`${this.store.api_url}/posts`).then((response) => {

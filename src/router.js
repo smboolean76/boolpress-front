@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage.vue";
 import AboutUs from "./pages/AboutUs.vue";
 import ContactUs from "./pages/ContactUs.vue";
 import SinglePost from "./pages/SinglePost.vue";
+import SingleCategory from "./pages/SingleCategory.vue";
 import Page404 from "./pages/Page404.vue";
 
 const router = createRouter({
@@ -31,6 +32,11 @@ const router = createRouter({
       component: SinglePost,
     },
     {
+      path: "/categories/:slug",
+      name: "single-category",
+      component: SingleCategory,
+    },
+    {
       path: "/:pathMatch(.*)*",
       name: "page-404",
       component: Page404,
@@ -38,4 +44,4 @@ const router = createRouter({
   ],
 });
 
-export default router;
+export { router };

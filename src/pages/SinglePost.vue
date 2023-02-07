@@ -2,6 +2,11 @@
   <div class="container">
     <img :src="post.image_url" :alt="post.title" />
     <h1>{{ post.title }}</h1>
+    <router-link
+      v-if="post.category"
+      :to="{ name: 'single-category', params: { slug: post.category.slug } }"
+      >{{ post.category.name }}</router-link
+    >
     <p>{{ post.content }}</p>
     <p>
       <router-link :to="{ name: 'single-post', params: { slug: 'prova' } }"

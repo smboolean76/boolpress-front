@@ -1,6 +1,20 @@
 <script>
+import axios from "axios";
+import { store } from "../store";
+
 export default {
   name: "AppHeader",
+  data() {
+    return {
+      store,
+      categories: [],
+    };
+  },
+  created() {
+    axios.get(`${this.store.api_url}/categories`).then((res) => {
+      this.categories = res.data;
+    });
+  },
 };
 </script>
 
@@ -18,6 +32,12 @@ export default {
         <li><router-link :to="{ name: 'about-us' }">Chi Siamo</router-link></li>
         <li>
           <router-link :to="{ name: 'contact-us' }">Contattaci</router-link>
+        </li>
+        <li v-for="category in categories">
+          <router-link
+            :to="{ name: 'single-category', params: { slug: category.slug } }"
+            >{{ category.name }}</router-link
+          >
         </li>
       </ul>
     </nav>
